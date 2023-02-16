@@ -1,25 +1,25 @@
 <div class="titlePage">
-  <h1>Products</h1>
-  <a href="/api/carts/63e9bda4f8b1b3b6dfec4229">Ir al carrito</a>
+  <h1>Productos</h1>
 </div>
 <div class="productsContainer">
   {{#each payload}}
     <div class="productCard">
-      <img class="productImg" src="" />
+      <img class="productImg" src="{{this.thumbnails}}" />
       <div class="productTitle">{{this.title}}</div>
-      <div class="productDescription">{{description}}</div>
-      <div class="productPrice">{{price}}</div>
-      <div class="productCategory">{{category}}</div>
-      <button class="productButton">Agregar al carrito</button>
+      <div class="productDescription">{{this.description}}</div>
+      <div class="productPrice">{{this.price}}</div>
+      <div class="productCategory">{{this.category}}</div>
+      <button class="productButton" onclick={addToCart("{{this._id}}")}>Agregar al carrito</button>
     </div>
   {{/each}}
 </div>
 
 <div class="productsPaginate">
-  <a href="#" class="paginateLeftArrow">←</a>
+  <a href="{{prevLink}}" class="paginateLeftArrow">←</a>
   <div class="paginateIndexContainer">
+    {{resPage}}
   </div>
-  <a href="#" class="paginateRightArrow">→</a>
+  <a href="{{nextLink}}" class="paginateRightArrow">→</a>
 </div>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

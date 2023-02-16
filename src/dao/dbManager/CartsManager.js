@@ -18,14 +18,14 @@ export default class CartsManager {
     } catch (error) {
       return {
         status: 500,
-        error: "Ha ocurrido un error mientras se obtenia los carritos",
+        error: "Ha ocurrido un error mientras se obtenian los carritos",
       };
     }
   }
 
   async getCartById(id) {
     try {
-      const cart = await cartModel.findById(id).populate("products.pid");
+      const cart = await cartModel.findById(id).lean().populate("products.pid");
       return cart === null
         ? {
             status: 404,
@@ -125,7 +125,7 @@ export default class CartsManager {
   async updateQuantity(cid, pid, quantity) {
     try {
       if (typeof quantity !== "number")
-        return { status: 400, error: "La cantidad debe ser un numero" };
+        return { status: 400, error: "El monto debe ser un numero" };
 
       const cartFinded = await this.getCartById(cid);
       if (cartFinded.error) return cartFinded;

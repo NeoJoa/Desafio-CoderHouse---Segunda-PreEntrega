@@ -9,6 +9,7 @@ export default class ProductManager {
         limit: limit,
         page: page,
         sort: { price: sort },
+        lean: true,
       });
       if (result.hasNextPage)
         result.nextLink = `http://localhost:8080/api/products/?${
@@ -103,7 +104,7 @@ export default class ProductManager {
           }
         : {
             status: 200,
-            message: `El producto ${id} fue borrado exitosamente`,
+            message: `El producto con el ID: ${id}, fue borrado exitosamente`,
           };
     } catch (error) {
       return {
